@@ -1,4 +1,4 @@
-# ARP-scaner
-Python ARP-scaner using Scapy
+# ARP-scanner
+Python ARP-scanner using Scapy
 
-> by w1ldy0uth
+by w1ldy0uth

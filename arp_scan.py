@@ -7,7 +7,7 @@ from datetime import datetime
 ip_range = "192.168.10.1/24"
 
 def arpscan():
-    print("Scan started")
+    print("ARP-scan started...")
     print("-"*40 + "\n")
 
     start_time = datetime.now()
@@ -22,17 +22,17 @@ def arpscan():
     for sent, recieved in answer:
         res.append({'IP': recieved.psrc, 'MAC': recieved.hwsrc})
 
-    print("Devices in the network:")
+    print("Devices in current network:")
     print("IP" + 20*" " + "MAC")
     for device in res:
         print("{:16}     {}".format(device['IP'], device['MAC']))
 
     print("\n" + "-"*40)
-    print("Scan ended")
+    print("ARP-scan ended")
 
     end_time = datetime.now()
 
-    print("Scan duration: ", end_time - start_time)
+    print("Duration: ", end_time - start_time)
 
 if __name__ == '__main__':
     arpscan()

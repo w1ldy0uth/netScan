@@ -1,4 +1,4 @@
-# ARP-scanner
-Python ARP-scanner using Scapy
+# Network scanner
+Python network scanner using Scapy
 
 by w1ldy0uth

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: UTF=8 -*-
 
+import sys
 from scapy.all import ARP, srp, Ether
 from datetime import datetime
 
-ip_range = "192.168.10.1/24"
+ip_range = sys.argv[1]
 
 def arpscan():
     print("ARP-scan started...")

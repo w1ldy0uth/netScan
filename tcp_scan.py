@@ -11,18 +11,40 @@ ports_input = sys.argv[2]
 
 ports = []
 port = ''
+first = ''
+last = ''
+ind = 0
 
 if ports_input.isdigit() == True:
     ports.append(int(ports_input))
-else:
+
+elif ',' in ports_input:
     for i in range(len(ports_input)):
         if ports_input[i].isdigit() == True:
             port += ports_input[i]
         elif ports_input[i] == ',':
             ports.append(int(port))
             port = ''
+    ports.append(int(port))
 
-ports.append(int(port))
+elif '-' in ports_input:
+    for i in range(len(ports_input)):
+        if ports_input[i].isdigit() == True:
+            first += ports_input[i]
+        elif ports_input[i] == '-':
+            ind = i
+            break
+    for i in range(ind, len(ports_input)):
+        if ports_input[i].isdigit() == True:
+            last += ports_input[i]
+    first = int(first)
+    last = int(last)
+    print(first, last)
+    while True:
+        ports.append(first)
+        first += 1
+        if first > last:
+            break
 
 def tcpscan():
     print("TCP-scan started...")

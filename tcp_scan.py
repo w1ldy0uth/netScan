@@ -15,12 +15,12 @@ first = ''
 last = ''
 ind = 0
 
-if ports_input.isdigit() == True:
+if ports_input.isdigit() is True:
     ports.append(int(ports_input))
 
 elif ',' in ports_input:
     for i in range(len(ports_input)):
-        if ports_input[i].isdigit() == True:
+        if ports_input[i].isdigit() is True:
             port += ports_input[i]
         elif ports_input[i] == ',':
             ports.append(int(port))
@@ -29,13 +29,13 @@ elif ',' in ports_input:
 
 elif '-' in ports_input:
     for i in range(len(ports_input)):
-        if ports_input[i].isdigit() == True:
+        if ports_input[i].isdigit() is True:
             first += ports_input[i]
         elif ports_input[i] == '-':
             ind = i
             break
     for i in range(ind, len(ports_input)):
-        if ports_input[i].isdigit() == True:
+        if ports_input[i].isdigit() is True:
             last += ports_input[i]
     first = int(first)
     last = int(last)
@@ -45,6 +45,7 @@ elif '-' in ports_input:
         first += 1
         if first > last:
             break
+
 
 def tcpscan():
     print("TCP-scan started...")
@@ -56,7 +57,7 @@ def tcpscan():
         src = random.randint(1025, 65534)
         rsp = sr1(IP(dst=ip)/TCP(sport=src,dport=dst,flags='S'),timeout=1, verbose=0)
 
-        if rsp == None:
+        if rsp is None:
             print("{}:{} is filtered (silently dropped)".format(ip, dst))
 
         elif rsp.haslayer(TCP):
@@ -68,7 +69,7 @@ def tcpscan():
                 print("{}:{} is closed".format(ip, dst))
 
         elif rsp.haslayer(ICMP):
-            if (int(resp.getlayer(ICMP).type) == 3) and (int(resp.getlayer(ICMP).code) in [1,2,3,9,10,13]):
+            if (int(rsp.getlayer(ICMP).type) == 3) and (int(rsp.getlayer(ICMP).code) in [1,2,3,9,10,13]):
                 print("{}:{} is filtered (silently dropped)".format(ip, dst))
 
     print("\n" + "-"*40)
@@ -77,6 +78,7 @@ def tcpscan():
     end_time = datetime.now()
 
     print("Duration: ", end_time - start_time)
+
 
 if __name__ == '__main__':
     tcpscan()

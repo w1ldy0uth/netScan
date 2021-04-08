@@ -2,18 +2,20 @@
 # -*- coding: UTF=8 -*-
 
 from scapy.all import ARP, srp, Ether
-from ip_getter import cidrip, getip
+from sub.ipget import cidr_ip, get_ip
+from sub.macget import get_mac
 
 
 class Arp:
     def __init__(self, verbose):
         self.verbose = verbose
-        self.ip = cidrip()
-        print("Your current IP address: {}\n".format(getip()))
+        self.ip = cidr_ip()
+        print('Your IP address: {}'.format(get_ip()))
+        print('Your physical address: {}\n'.format(get_mac()))
 
     def scan(self):
         arp = ARP(pdst=self.ip)
-        ether = Ether(dst="ff:ff:ff:ff:ff:ff")
+        ether = Ether(dst='ff:ff:ff:ff:ff:ff')
 
         ans = srp(ether/arp, timeout=4, verbose=self.verbose)[0]
 

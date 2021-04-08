@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: UTF=8 -*-
+
 import platform
 import subprocess
 
 
-def getip():
+def get_ip():
     if platform.system() == 'Linux':
         ip = subprocess.check_output(
             ["bash", "-c",
@@ -26,8 +29,8 @@ def getip():
         return ip
 
 
-def cidrip():
-    ip = getip()
+def cidr_ip():
+    ip = get_ip()
 
     while ip[-1] != '.':
         ip = ip[:-1:]
@@ -36,4 +39,5 @@ def cidrip():
 
 
 if __name__ == '__main__':
-    print(getip())
+    print(get_ip())
+    print(cidr_ip())

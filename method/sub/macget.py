@@ -3,13 +3,13 @@
 
 import platform
 import subprocess
-from sub.iface import get_iface
+from iface import get_iface
 
 
 def get_mac(iface=get_iface()):
     if platform.system() == 'Linux':
         mac = subprocess.check_output(['bash', '-c',
-                                       'ifconfig wlp3s0 | grep ether'])
+                                       'ifconfig '+iface+' | grep ether'])
         return mac.decode('utf-8')[14:31:]
 
 

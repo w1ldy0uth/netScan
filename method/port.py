@@ -10,4 +10,5 @@ import random
 
 
 class Port:
-    def __init__(self, ip)
+    def __init__(self, ip):
+        pass

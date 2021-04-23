@@ -9,7 +9,7 @@ def get_ip():
     if platform.system() == 'Linux':
         ip = subprocess.check_output(
             ["bash", "-c",
-             "hostname --all-ip-addresses"]).decode("utf-8")[:-1:]
+             "hostname -i"]).decode("utf-8")[:-1:]
 
         return ip
 

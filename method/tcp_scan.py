@@ -7,6 +7,7 @@ from scapy.all import IP, TCP, sr1, ICMP
 import random
 
 ip = sys.argv[1]
+
 ports_input = sys.argv[2]
 
 ports = []

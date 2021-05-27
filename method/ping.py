@@ -18,7 +18,7 @@ class Ping:
 
         self.hosts = [str(ip) for ip in ipaddress.IPv4Network(ip)]
 
-    def scanner(self, ipaddr):
+    def scan(self, ipaddr):
         if getmacbyip(ipaddr) is None:
             pass
         else:
@@ -30,7 +30,7 @@ class Ping:
     def threader(self):
         while True:
             current = self.q.get()
-            self.scanner(current)
+            self.scan(current)
             self.q.task_done()
 
     def work_process(self):

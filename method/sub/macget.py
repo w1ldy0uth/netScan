@@ -3,7 +3,7 @@
 
 import platform
 import subprocess
-from iface import get_iface
+from sub.iface import get_iface
 
 
 def get_mac(iface=get_iface()):

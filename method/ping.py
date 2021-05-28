@@ -17,6 +17,7 @@ class Ping:
         self.q = Queue()
 
         self.hosts = [str(ip) for ip in ipaddress.IPv4Network(ip)]
+        self.res = []
 
     def scan(self, ipaddr):
         if getmacbyip(ipaddr) is None:
@@ -25,7 +26,7 @@ class Ping:
             icmp = IP(dst=ipaddr)/ICMP()
             ans = sr1(icmp, timeout=5, verbose=self.verbose)
             if ans:
-                print('{} is online'.format(ipaddr))
+                self.res.append(ipaddr)
 
     def threader(self):
         while True:
@@ -44,7 +45,9 @@ class Ping:
 
         self.q.join()
 
+        return self.res
+
 
 if __name__ == '__main__':
     scan = Ping(verbose=False, ip=cidr_ip(), threads=100)
-    scan.work_process()
+    print(scan.work_process())

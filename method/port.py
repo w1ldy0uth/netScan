@@ -20,6 +20,8 @@ class Port:
         self.port_begin = port_begin
         self.port_end = port_end
 
+        self.open = self.closed = self.dropped = []
+
     def scan(self, dst):
         src = random.randint(1025, 65534)
         rsp = sr1(
@@ -27,21 +29,21 @@ class Port:
             timeout=1, verbose=0)
 
         if rsp is None:
-            print("{}:{} is filtered (silently dropped)".format(self.ip, dst))
+            self.dropped.append(self.ip + ":" + str(dst))
 
         elif rsp.haslayer(TCP):
             if rsp.getlayer(TCP).flags == 0x12:
                 send_rst = sr1(
                     IP(dst=self.ip)/TCP(sport=src, dport=dst, flags='R'),
                     timeout=1, verbose=0)
-                print("{}:{} is open".format(self.ip, dst))
+                self.open.append(self.ip + ":" + str(dst))
 
             elif rsp.getlayer(TCP).flags == 0x14:
-                print("{}:{} is closed".format(self.ip, dst))
+                self.closed.append(self.ip + ":" + str(dst))
 
         elif rsp.haslayer(ICMP):
             if (int(rsp.getlayer(ICMP).type) == 3) and (int(rsp.getlayer(ICMP).code) in [1,2,3,9,10,13]):
-                print("{}:{} is filtered (silently dropped)".format(self.ip, dst))
+                self.dropped.append(self.ip + ":" + str(dst))
     
     def threader(self):
         while True:
@@ -60,7 +62,9 @@ class Port:
 
         self.q.join()
 
+        return self.open, self.closed, self.dropped
+
 
 if __name__ == "__main__":
     scan = Port(verbose=False, ip=get_ip(), port_begin=1, port_end=100)
-    scan.work_process()
+    print(scan.work_process())

@@ -39,5 +39,5 @@ def cidr_ip():
 
 
 if __name__ == '__main__':
-    print(len(get_ip()), get_ip())
+    print(get_ip())
     print(cidr_ip())

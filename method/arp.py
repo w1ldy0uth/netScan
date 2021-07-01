@@ -2,7 +2,10 @@
 # -*- coding: UTF=8 -*-
 
 from scapy.all import ARP, srp, Ether
-from sub.ipget import cidr_ip
+try:
+    from method.sub.ipget import cidr_ip
+except ImportError:
+    from sub.ipget import cidr_ip
 
 
 class Arp:

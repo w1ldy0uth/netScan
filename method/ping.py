@@ -5,13 +5,16 @@ import ipaddress
 import threading
 from queue import Queue
 from scapy.all import IP, ICMP, sr1, getmacbyip
-from sub.ipget import cidr_ip
+try:
+    from method.sub.ipget import cidr_ip
+except ImportError:
+    from sub.ipget import cidr_ip
 
 
 class Ping:
     """A class to recieve IPs of host in current network."""
 
-    def __init__(self, verbose, threads):
+    def __init__(self, verbose, threads=100):
         """
         Constructs all the necessary attributes.
 

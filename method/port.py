@@ -5,7 +5,10 @@ import threading
 import random
 from queue import Queue
 from scapy.all import IP, ICMP, TCP, sr1
-from sub.ipget import get_ip
+try:
+    from method.sub.ipget import get_ip
+except ImportError:
+    from sub.ipget import get_ip
 
 
 class Port:

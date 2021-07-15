@@ -11,7 +11,7 @@ except ImportError:
 class Arp:
     """A class to recieve IP and MAC addresses of hosts in current network."""
 
-    def __init__(self, verbose):
+    def __init__(self, verbose) -> None:
         """
         Constructs all the necessary attributes.
 
@@ -22,7 +22,7 @@ class Arp:
         self.verbose = verbose
         self.ip = cidr_ip()
 
-    def scan(self):
+    def scan(self) -> list:
         """Scans network and pulls out IPs and MACs from recieved packets."""
 
         # arp packets's parts (to send)

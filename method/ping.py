@@ -14,7 +14,7 @@ except ImportError:
 class Ping:
     """A class to recieve IPs of host in current network."""
 
-    def __init__(self, verbose, threads=100):
+    def __init__(self, verbose, threads=100) -> None:
         """
         Constructs all the necessary attributes.
 
@@ -40,7 +40,7 @@ class Ping:
         self.hosts = [str(ip) for ip in ipaddress.IPv4Network(ip)]
         self.res = []
 
-    def scan(self, ipaddr):
+    def scan(self, ipaddr) -> None:
         """Scans network and catches active IPs."""
 
         if getmacbyip(ipaddr) is None: # checks if host's MAC cannot be resolved
@@ -51,7 +51,7 @@ class Ping:
             if ans:
                 self.res.append(ipaddr) # keeping an answered host's IP
 
-    def threader(self):
+    def threader(self) -> None:
         """Creates a single thread."""
 
         while True:
@@ -59,7 +59,7 @@ class Ping:
             self.scan(current)
             self.q.task_done()
 
-    def work_process(self):
+    def work_process(self) -> list:
         """Makes (magic) threads work and returns IPs."""
 
         for thread in range(self.threads):

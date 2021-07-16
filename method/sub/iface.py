@@ -5,7 +5,8 @@ import platform
 import subprocess
 
 
-def get_iface():
+def get_iface() -> str:
+    """Returns the current web interface of device"""
     if platform.system() == 'Windows':
         from scapy.all import get_windows_if_list, get_if_list
 
@@ -22,7 +23,7 @@ def get_iface():
         # Windows map of guids to names
         namesAllowedList = [guidToNameDict.get(e) for e in guidsFromIntfList]
 
-        return namesAllowedList
+        # return namesAllowedList
 
     elif platform.system() == "Linux":
         iface = subprocess.check_output(

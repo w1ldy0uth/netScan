@@ -8,11 +8,13 @@ from method.ping import Ping
 from method.port import Port
 
 def root() -> None:
+    """Checks if app is run as root"""
     if os.geteuid() != 0:
         print("Access denied. Run this program as root.")
         exit()
 
 def main() -> None:
+    """Handles arguments of CLI and shows appropriate output"""
     root()
     if sys.argv[1] in ("-h", "--help"):
         print("Nscan: usage: sudo python main.py [-args] [verbose] [...]",

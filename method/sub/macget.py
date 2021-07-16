@@ -3,10 +3,13 @@
 
 import platform
 import subprocess
-from sub.iface import get_iface
+try:
+    from sub.iface import get_iface
+except ImportError:
+    from iface import get_iface
 
-
-def get_mac(iface=get_iface()):
+def get_mac(iface=get_iface()) -> str:
+    """Returns the current MAC address of device via bash CLI and web interface"""
     if platform.system() == 'Linux':
         mac = subprocess.check_output(['bash', '-c',
                                        'ifconfig '+iface+' | grep ether'])

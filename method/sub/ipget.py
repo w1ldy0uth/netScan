@@ -5,31 +5,17 @@ import platform
 import subprocess
 
 
-def get_ip():
-    if platform.system() == 'Linux':
+def get_ip() -> str:
+    """Returns the IP of current device from the bash CLI"""
+    if platform.system() in ("Linux", "Darwin"):
         ip = subprocess.check_output(
             ["bash", "-c",
              "ifconfig | grep 'inet ' | grep -v 127.0.0.1"]).decode("utf-8")[13:-49:]
 
         return ip
 
-    elif platform.system() == 'Darwin':
-        output = subprocess.check_output(
-            ["bash", "-c",
-             "ifconfig | grep 'inet ' | grep -v 127.0.0.1"]).decode("utf-8")
-        output = output[6:-1:]
-
-        ip = ""
-        for i in output:
-            if i != " ":
-                ip += i
-            else:
-                break
-
-        return ip
-
-
-def cidr_ip():
+def cidr_ip() -> str:
+    """Returns the IP in CIDR notation"""
     ip = get_ip()
 
     while ip[-1] != '.':

@@ -20,6 +20,11 @@ There are 3 main scanning methods, each based on ARP, ICMP and TCP protocols. Th
 + IP getter: returns the IP of running host and CIDR IP /24 block, uses bash script;
 + MAC getter: returns the MAC of running host, uses bash script;
 
+Disclamer
+=====
+
+This application is meant to be crossplatform. However, there are still no support for Windows system, as well as macOS version has not been tested yet could be unstable. At this point, I warn you to use this app very carefully on macOS platforms. For those who want to implement Windows compatibility in netScan, I recomend you to install `winpcap` first.
+
 Requirements
 =====
 

@@ -35,7 +35,7 @@ SCAN METHODS:
             print(host["IP"] + "  " + host["MAC"])
     
     elif sys.argv[1] in ("-p", "--ping"):
-        obj = Ping(int(sys.argv[2]), int(sys.argv[3]))
+        obj = Ping(int(sys.argv[2]))
         out = obj.main()
         for host in out:
             print("{} is alive".format(host))

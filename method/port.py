@@ -14,7 +14,7 @@ except ImportError:
 class Port:
     """A class to recieve a state of each host's port."""
 
-    def __init__(self, verbose, ip, threads, port_begin, port_end) -> None:
+    def __init__(self, verbose, ip, port_begin, port_end, threads=100) -> None:
         """
         Constructs all the necessary attributes.
 
@@ -89,5 +89,5 @@ class Port:
 
 
 if __name__ == "__main__":
-    scan = Port(verbose=False, ip=get_ip(), threads=100, port_begin=1, port_end=100)
+    scan = Port(verbose=False, ip=get_ip(), port_begin=1, port_end=100, threads=100)
     print(scan.main())

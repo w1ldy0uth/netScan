@@ -10,7 +10,7 @@ def get_iface() -> str:
     """Returns the current web interface of device"""
     
     if platform.system() == "Windows":
-        stream = os.popen("ifc.bat")
+        stream = os.popen("netScan\method\sub\ifc.bat")
         output = stream.read()
         return output.strip()
 

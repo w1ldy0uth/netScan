@@ -6,7 +6,7 @@ netScan is a Python based application with using Scapy library. Its main task is
 How the application works
 =====
 
-There are 3 main scanning methods, each based on ARP, ICMP and TCP protocols. The first to are used to get hosts on the local network, while the third method gets the port information of the selected host. All methods was designed and made multithreaded.
+There are 3 main scanning methods, each based on ARP, ICMP and TCP protocols. The first two are used to get hosts on the local network, while the third method gets the port information of the selected host. All methods was designed and made multithreaded.
 
 #### Main methods:
 
@@ -16,7 +16,7 @@ There are 3 main scanning methods, each based on ARP, ICMP and TCP protocols. Th
 
 #### Sub methods:
 
-+ Interface getter: returns current web interface of running host, uses bash script;
++ Interface getter: returns current network interface of running host, uses bash script;
 + IP getter: returns the IP of running host and CIDR IP /24 block, uses bash script;
 + MAC getter: returns the MAC of running host, uses bash script;
 

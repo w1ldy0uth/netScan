@@ -9,12 +9,14 @@ from method.port import Port
 
 def root() -> None:
     """Checks if app is run as root"""
+    
     if os.geteuid() != 0:
         print("Access denied. Run this program as root.")
         exit()
 
 def main() -> None:
     """Handles arguments of CLI and shows appropriate output"""
+   
     root()
     if sys.argv[1] in ("-h", "--help"):
         print("Nscan: usage: sudo python main.py [-args] [verbose] [...]",
@@ -32,13 +34,13 @@ def main() -> None:
     
     elif sys.argv[1] in ("-p", "--ping"):
         obj = Ping(int(sys.argv[2]), int(sys.argv[3]))
-        out = obj.work_process()
+        out = obj.main()
         for host in out:
             print("{} is alive".format(host))
     
     elif sys.argv[1] in ("-t", "--tcp"):
         obj = Port(int(sys.argv[2]), sys.argv[3], int(sys.argv[4]), int(sys.argv[5]), int(sys.argv[6])) 
-        out = obj.work_process()
+        out = obj.main()
         opened = out[0]
         closed = out[1]
         filtered = out[2]

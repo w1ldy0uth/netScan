@@ -30,16 +30,16 @@ class Arp:
 
         # arp packets's parts (to send)
         arp = ARP(pdst=self.ip)
-        ether = Ether(dst='ff:ff:ff:ff:ff:ff')
+        ether = Ether(dst="ff:ff:ff:ff:ff:ff")
 
         ans = srp(ether/arp, timeout=4, verbose=self.verbose, iface=self.iface)[0] # sending packet to network
 
-        self.res = [] # storage for addresses
+        res = [] # storage for addresses
 
         for snd, rcv in ans:
-            self.res.append({'IP': rcv.psrc, 'MAC': rcv.hwsrc}) # pulling out IPs and MACs
+            res.append({"IP": rcv.psrc, "MAC": rcv.hwsrc}) # pulling out IPs and MACs
 
-        return self.res
+        return res
 
 
 if __name__ == "__main__":

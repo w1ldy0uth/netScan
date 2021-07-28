@@ -59,7 +59,7 @@ class Ping:
             self.scan(current)
             self.q.task_done()
 
-    def work_process(self) -> list:
+    def main(self) -> list:
         """Makes (magic) threads work and returns IPs."""
 
         for thread in range(self.threads):
@@ -75,6 +75,6 @@ class Ping:
         return self.res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     scan = Ping(verbose=False, threads=100)
-    print(scan.work_process())
+    print(scan.main())

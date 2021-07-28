@@ -7,7 +7,8 @@ import subprocess
 
 def get_iface() -> str:
     """Returns the current web interface of device"""
-    if platform.system() == 'Windows':
+    
+    if platform.system() == "Windows":
         from scapy.all import get_windows_if_list, get_if_list
 
         winList = get_windows_if_list()
@@ -25,12 +26,12 @@ def get_iface() -> str:
 
         # return namesAllowedList
 
-    elif platform.system() == "Linux":
+    elif platform.system() in ("Linux", "Darwin"):
         iface = subprocess.check_output(
             ["bash", "-c", "route | grep default | awk '{print $8}'"])
 
         return iface.decode("utf-8")[:-1:]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_iface())

@@ -71,7 +71,7 @@ class Port:
             self.scan(current)
             self.q.task_done()
     
-    def work_process(self) -> list:
+    def main(self) -> list:
         """Makes threads work and returns state of each port from range."""
         
         for thread in range(self.threads):
@@ -90,4 +90,4 @@ class Port:
 
 if __name__ == "__main__":
     scan = Port(verbose=False, ip=get_ip(), threads=100, port_begin=1, port_end=100)
-    print(scan.work_process())
+    print(scan.main())

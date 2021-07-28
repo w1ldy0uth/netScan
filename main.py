@@ -3,6 +3,7 @@
 
 import os
 import sys
+import platform
 from method.arp import Arp
 from method.ping import Ping
 from method.port import Port
@@ -16,14 +17,15 @@ def root() -> None:
 
 def main() -> None:
     """Handles arguments of CLI and shows appropriate output"""
-   
-    root()
+    if platform.system() != "Windows":
+        root()
     if sys.argv[1] in ("-h", "--help"):
-        print("Nscan: usage: sudo python main.py [-args] [verbose] [...]",
-              "\nSCAN METHODS:",
-              "\n\t-a (--arp): ARP scan; requires only verbose",
-              "\n\t-p (--ping): ICMP, or just ping, scan; requires verbose and number of threads",
-              "\n\t-t (--tcp): TCP, or just port, scan; requires verbose, host ip, threads and border ports")
+        print("""netScan is a simple application for managing local network hosts' information, made with Python and Scapy. 
+Usage: sudo python main.py [-args] [verbose] [...]
+SCAN METHODS:
+\t-a (--arp): ARP scan; requires only verbose;
+\t-p (--ping): ICMP, or just ping, scan; requires verbose and number of threads;
+\t-t (--tcp): TCP, or just port, scan; requires verbose, host ip, threads and border ports""")
     
     elif sys.argv[1] in ("-a", "--arp"):
         obj = Arp(int(sys.argv[2]))

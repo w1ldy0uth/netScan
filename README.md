@@ -23,7 +23,7 @@ There are 3 main scanning methods, each based on ARP, ICMP and TCP protocols. Th
 Disclamer
 =====
 
-This application is meant to be crossplatform. However, there are still no support for Windows system, as well as macOS version has not been tested yet could be unstable. At this point, I warn you to use this app very carefully on macOS platforms. For those who want to implement Windows compatibility in netScan, I recomend you to install `winpcap` first.
+This application is meant to be crossplatform. However, there are still low support of Windows system, as well as macOS version has not been tested yet could be unstable. At this point, I warn you to use this app very carefully on macOS devices. For those who want to implement Windows compatibility in netScan, I recommend you to install `npcap` or (which is not recommended) `winpcap` first.
 
 Requirements
 =====

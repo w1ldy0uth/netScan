@@ -23,7 +23,7 @@ There are 3 main scanning methods, each based on ARP, ICMP and TCP protocols. Th
 Disclamer
 =====
 
-This application is meant to be crossplatform. However, there are still low support of Windows system, as well as macOS version has not been tested yet could be unstable. At this point, I warn you to use this app very carefully on macOS devices. For those who want to implement Windows compatibility in netScan, I recommend you to install `npcap` or (which is not recommended) `winpcap` first.
+This application is meant to be crossplatform. However, there are stil Windows and macOS versions has not been tested yet, so they could be unstable. At this point, I warn you to use this app very carefully on macOS and Windows devices.
 
 Requirements
 =====
@@ -33,6 +33,8 @@ The program requires the following components:
 + Python 3.6+
 + Scapy 2.4.5
 + git
++ npcap or winpcap (for Windows users)
++ getmac python library
 
 Make sure that following Python libraries are working properly on your machine:
 

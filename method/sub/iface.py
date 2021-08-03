@@ -5,14 +5,15 @@ import os
 import platform
 import subprocess
 
+PATH = "ifc.bat"
 
-def get_iface() -> str:
+def get_iface(path) -> str:
     """Returns the current web interface of device"""
     
     if platform.system() == "Windows":
-        stream = os.popen("netScan\method\sub\ifc.bat")
+        stream = os.popen(path)
         output = stream.read()
-        return output.strip()
+        return output.strip().replace("\n", ", ")
 
     elif platform.system() in ("Linux", "Darwin"):
         iface = subprocess.check_output(
@@ -22,4 +23,4 @@ def get_iface() -> str:
 
 
 if __name__ == "__main__":
-    print(get_iface())
+    print(get_iface(PATH))

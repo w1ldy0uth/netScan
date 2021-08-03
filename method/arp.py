@@ -4,10 +4,8 @@
 from scapy.all import ARP, srp, Ether
 try:
     from method.sub.ipget import cidr_ip
-    from method.sub.iface import get_iface
 except ImportError:
     from sub.ipget import cidr_ip
-    from sub.iface import get_iface
 
 
 class Arp:
@@ -23,7 +21,6 @@ class Arp:
 
         self.verbose = verbose
         self.ip = cidr_ip()
-        self.iface = get_iface()
 
     def scan(self) -> list:
         """Scans network and pulls out IPs and MACs from recieved packets."""
@@ -32,7 +29,7 @@ class Arp:
         arp = ARP(pdst=self.ip)
         ether = Ether(dst="ff:ff:ff:ff:ff:ff")
 
-        ans = srp(ether/arp, timeout=4, verbose=self.verbose, iface=self.iface)[0] # sending packet to network
+        ans = srp(ether/arp, timeout=4, verbose=self.verbose)[0] # sending packet to network
 
         res = [] # storage for addresses
 

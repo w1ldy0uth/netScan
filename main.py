@@ -7,6 +7,11 @@ import platform
 from method.arp import Arp
 from method.ping import Ping
 from method.port import Port
+from method.sub.iface import get_iface
+from method.sub.ipget import get_ip
+from method.sub.macget import get_mac
+
+PATH = "method\sub\ifc.bat"
 
 def root() -> None:
     """Checks if app is run as root"""
@@ -15,17 +20,30 @@ def root() -> None:
         print("Access denied. Run this program as root.")
         exit()
 
+def help() -> None:
+    """Shows help information"""
+
+    print("""\nnetScan is a simple application for managing local network hosts' information, made with Python and Scapy.
+ 
+Usage: sudo python main.py [-method] [verbose] [-args] [...]
+
+SCAN METHODS:
+\t-a (--arp): ARP scan; requires only verbose;
+\t-p (--ping): ICMP, or just ping, scan; requires only verbose;
+\t-t (--tcp): TCP, or just port, scan; requires verbose, host ip and ports interval (from where to where).
+OTHER METHODS:
+\t-i (--info): shows main info about current running host (IP, MAC, network interfaces)
+
+If unexpected errors occur while the program is running, contact with developer 
+by leaving an issue on GitHub repository page or by email: shurygin1vs@gmail.com""")
+
 def main() -> None:
     """Handles arguments of CLI and shows appropriate output"""
     if platform.system() != "Windows":
         root()
+
     if sys.argv[1] in ("-h", "--help"):
-        print("""netScan is a simple application for managing local network hosts' information, made with Python and Scapy. 
-Usage: sudo python main.py [-args] [verbose] [...]
-SCAN METHODS:
-\t-a (--arp): ARP scan; requires only verbose;
-\t-p (--ping): ICMP, or just ping, scan; requires verbose and number of threads;
-\t-t (--tcp): TCP, or just port, scan; requires verbose, host ip, threads and border ports""")
+        help()
     
     elif sys.argv[1] in ("-a", "--arp"):
         obj = Arp(int(sys.argv[2]))
@@ -52,10 +70,13 @@ SCAN METHODS:
             print("{} is closed".format(port))
         for port in filtered:
             print("{} is filtered (silently dropped)".format(port))
+    
+    elif sys.argv[1] in ("-i", "--info"):
+        print("Network interfaces -", get_iface(PATH), "\nIP -", get_ip(), "\nMAC -", get_mac(), end="")
 
 
 if __name__ == "__main__":
     try:
         main()
     except IndexError:
-        print("Wrong arguments specified, try again")
+        help()

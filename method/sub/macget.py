@@ -4,8 +4,10 @@
 import platform
 import subprocess
 try:
-    from sub.iface import get_iface
+    from method.sub.iface import get_iface
 except ImportError:
+    from sub.iface import get_iface
+except ModuleNotFoundError:
     from iface import get_iface
 
 

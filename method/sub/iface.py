@@ -7,11 +7,11 @@ import subprocess
 
 PATH = "ifc.bat"
 
-def get_iface(path) -> str:
+def get_iface() -> str:
     """Returns the current web interface of device"""
     
     if platform.system() == "Windows":
-        stream = os.popen(path)
+        stream = os.popen(PATH)
         output = stream.read()
         return output.strip().replace("\n", ", ")
 
@@ -23,4 +23,4 @@ def get_iface(path) -> str:
 
 
 if __name__ == "__main__":
-    print(get_iface(PATH))
+    print(get_iface())

@@ -41,9 +41,10 @@ def parse_args():
         formatter_class=argparse.RawTextHelpFormatter,
         epilog="""
 Examples:
-    sudo python main.py arp [-t timeout] [-v]
-    sudo python main.py ping [-t timeout] [-th number_of_threads] [-v]
-    sudo python main.py tcp [-h host_address] [-s start_port] [-e end_port] [-t timeout] [-th number_of_threads] [-v]
+    sudo python -m src.main arp [-t TIMEOUT] [-v]
+    sudo python -m src.main ping [-t TIMEOUT] [-th NUMBER_OF_THREADS] [-v]
+    sudo python -m src.main tcp [--target TARGET_ADDRESS] [-s START_PORT] [-e END_PORT] [-t TIMEOUT] [-th NUMBER_OF_THREADS] [-v]
+    sudo python -m src.main info
         """
     )
 

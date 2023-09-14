@@ -22,7 +22,7 @@ Although this application is meant to be compatible with multiple platforms, it'
 ```bash
 ./init.sh
 source netscan_env/bin/activate
-sudo python -m src.main
+sudo python -m src.main -h
 ```
 
 ### Windows
@@ -30,5 +30,5 @@ sudo python -m src.main
 ```bat
 ./init.sh
 call netscan_env/bin/activate
-python -m src.main
+python -m src.main -h
 ```

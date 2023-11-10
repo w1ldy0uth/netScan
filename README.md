@@ -10,6 +10,30 @@ The application employs three principal scanning techniques, each of which relie
 
 Although this application is meant to be compatible with multiple platforms, it's crucial to acknowledge that the Windows and macOS versions have not undergone testing. As a result, it may be unstable or cause unexpected behavior. Therefore, I strongly recommend using this application cautiously on macOS and Windows devices until further testing and improvements are carried out.
 
+## Features
+
+### Done
+
+ - ARP scan
+ - ICMP (ping) scan
+ - TCP (port) scan
+ - Single CLI interface
+ - Wide host machine info gathering
+
+### In development
+
+ - UDP scan
+ - TCP adaptive scan algorithm
+ 
+### Planning in future
+
+ - Wireless scan
+ - OS fingerprint
+ - Low-level protocols support
+ - Support for devices status realtime monitoring (kind of a packet capture)
+ - Access to neighboring subnets 
+ - Data visualization
+
 ## Requirements
 
 + Python 3.6+
